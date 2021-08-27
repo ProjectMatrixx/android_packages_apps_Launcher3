@@ -74,6 +74,24 @@
             android:theme="@style/ThemeControlHighlightWorkspaceColor"
             android:visibility="gone" />
 
+            <Space
+                android:id="@+id/action_lock_space"
+                android:layout_width="24dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:visibility="gone" />
+     
+            <ImageButton
+                android:id="@+id/action_lock"
+                style="@style/OverviewActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_recents_pin"
+                android:tint="?android:attr/colorAccent"
+                android:background="@drawable/bg_overview_actions_button"
+                android:theme="@style/ThemeControlHighlightWorkspaceColor"
+                android:visibility="gone" />
+
         <Space
             android:id="@+id/action_lens_space"
             android:layout_width="24dp"
