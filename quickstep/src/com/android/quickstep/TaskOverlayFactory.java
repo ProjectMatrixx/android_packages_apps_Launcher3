@@ -115,6 +115,7 @@ public class TaskOverlayFactory implements ResourceBasedOverride {
             TaskShortcutFactory.SPLIT_SELECT,
             TaskShortcutFactory.FLOATING,
             TaskShortcutFactory.UNINSTALL,
+            TaskShortcutFactory.LOCK_APP,
             TaskShortcutFactory.PIN,
             TaskShortcutFactory.INSTALL,
             TaskShortcutFactory.FREE_FORM,
