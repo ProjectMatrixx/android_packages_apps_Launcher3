@@ -67,6 +67,7 @@ import com.android.launcher3.shortcuts.ShortcutKey;
 import com.android.launcher3.util.CancellableTask;
 import com.android.launcher3.util.InstantAppResolver;
 import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3.util.Themes;
 import com.android.launcher3.widget.WidgetSections;
 import com.android.launcher3.widget.WidgetSections.WidgetSection;
 
@@ -102,6 +103,7 @@ public class IconCache extends BaseIconCache {
     private final InstantAppResolver mInstantAppResolver;
     private final IconProvider mIconProvider;
     private final CancellableTask mCancelledTask;
+    private final String mCustomThemedIconPack;
 
     private final SparseArray<BitmapInfo> mWidgetCategoryBitmapInfos;
 
@@ -122,6 +124,7 @@ public class IconCache extends BaseIconCache {
 
         mCancelledTask = new CancellableTask(() -> null, MAIN_EXECUTOR, c -> { });
         mCancelledTask.cancel();
+        mCustomThemedIconPack = Themes.getThemedIconPack(context);
     }
 
     @Override
@@ -611,7 +614,7 @@ public class IconCache extends BaseIconCache {
     }
 
     public Drawable getFullResIcon(LauncherActivityInfo info) {
-        return mIconProvider.getIcon(info, mIconDpi);
+        return mIconProvider.getIcon(info, mIconDpi, mCustomThemedIconPack);
     }
 
     public void updateSessionCache(PackageUserKey key, PackageInstaller.SessionInfo info) {
