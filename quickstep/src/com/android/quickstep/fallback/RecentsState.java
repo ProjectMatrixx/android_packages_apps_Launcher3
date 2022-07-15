@@ -23,8 +23,11 @@ import static com.android.launcher3.uioverrides.states.OverviewModalTaskState.ge
 import android.content.Context;
 import android.graphics.Color;
 
+import androidx.core.graphics.ColorUtils;
+
 import com.android.launcher3.DeviceProfile;
 import com.android.launcher3.R;
+import com.android.launcher3.Utilities;
 import com.android.launcher3.statemanager.BaseState;
 import com.android.launcher3.util.Themes;
 import com.android.quickstep.views.RecentsViewContainer;
@@ -148,7 +151,8 @@ public class RecentsState implements BaseState<RecentsState> {
      */
     public int getScrimColor(Context context) {
         return hasFlag(FLAG_SCRIM)
-                ? Themes.getAttrColor(context, R.attr.overviewScrimColor)
+                ?  ColorUtils.setAlphaComponent(Themes.getAttrColor(context, R.attr.overviewScrimColor),
+                Utilities.getRecentsOpacity(context) * 255 / 100)
                 : Color.TRANSPARENT;
     }
 
