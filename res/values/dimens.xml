@@ -585,4 +585,7 @@
     <!-- App Title Pill -->
     <dimen name="app_title_pill_horizontal_padding">4dp</dimen>
     <dimen name="app_title_pill_round_rect_padding">2dp</dimen>
+
+    <!-- Max blur radius for Launcher depth effect -->
+    <dimen name="max_depth_blur_radius">25dp</dimen>
 </resources>
