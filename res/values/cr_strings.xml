@@ -165,6 +165,7 @@
     <string name="recents_clear_all_title">Clear all</string>
     <string name="recents_lens_title">Lens</string>
     <string name="recents_lock_title">Pin app</string>
+    <string name="recents_kill_app">Kill app</string>
 
     <!-- Shake Clear Recents -->
     <string name="recents_shake_clear_all_title">Shake phone to clear all tasks</string>
