@@ -293,6 +293,8 @@ public class SettingsMisc extends CollapsingToolbarBaseActivity
                         return true;
                     });
                     return true;
+                case Utilities.KEY_ACTION_TOAST_ENABLED:
+                    return true;
                 case SUGGESTIONS_KEY:
                     // Show if Device Personalization Services is present.
                     return isDPSEnabled(getContext());
