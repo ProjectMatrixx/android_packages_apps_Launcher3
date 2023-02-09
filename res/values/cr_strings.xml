@@ -416,4 +416,8 @@
     <!-- Freed memory on clear all tasks -->
     <string name="freed_memory_text">Freed up %1$s</string>
     <string name="optimal_memory_text">Your system is now in optimal condition</string>
+
+    <!-- Toast for Clear All, App Locked n Unlocked -->
+    <string name="action_toast_enabled_title">Action Toasts</string>
+    <string name="action_toast_enabled_summary">Enable-disable Toast clear all</string>
 </resources>
