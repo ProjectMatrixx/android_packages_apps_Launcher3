@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">Resumo</string>
     <string name="show_quickspace_summary">Mostrar no topo da tela inicial</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Bem-vindo à crDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">Equipe crDroid!</string>
+    <string name="quick_event_rom_intro_welcome">Bem-vindo à Matrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Equipe Matrixx!</string>
     <string-array name="welcome_message_variants">
         <item>Obrigado por nos escolher</item>
         <item>Gostando da gente? Nos mande uma cerveja</item>
@@ -310,7 +310,7 @@
         <item>Não iniciamos o fogo!</item>
         <item>Hora de uma boa música</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C CABEÇALHO</item>
-        <item>Você precisa da crDroid Premium para ver isso</item>
+        <item>Você precisa da Matrixx Premium para ver isso</item>
         <item>Lembre-se da linhagem do unicornio</item>
         <item>Aproveite sua bateria extendida</item>
         <item>A partir do ponto zero</item>

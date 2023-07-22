@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">한 눈에 보기</string>
     <string name="show_quickspace_summary">홈 화면 상단에 표시</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">crDroid에 오신 것을 환영합니다!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid time!</string>
+    <string name="quick_event_rom_intro_welcome">Matrixx에 오신 것을 환영합니다!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx time!</string>
     <string-array name="welcome_message_variants">
         <item>우리를 선택해 주셔서 감사합니다</item>
         <item>후원하기</item>
@@ -305,12 +305,12 @@
         <item>오, 무슨 일이에요?</item>
         <item>당신에 작업에 집중하세요</item>
         <item>얼마나 많은 스크린샷을 찍으셨나요?</item>
-        <item>Open goodness with crDroid</item>
+        <item>Open goodness with Matrixx</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>좋은 음악을 들을 시간이에요.</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
-        <item>이것을 보려면 crDroid Premium이 필요합니다</item>
+        <item>이것을 보려면 Matrixx Premium이 필요합니다</item>
         <item>유니콘의 혈통을 기억하십시오</item>
         <item>더 나은 배터리 수명을 즐기세요</item>
         <item>제로에서 시작</item>

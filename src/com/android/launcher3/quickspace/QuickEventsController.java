@@ -130,7 +130,7 @@ public class QuickEventsController {
         }
         mPSAStr = mContext.getResources().getStringArray(R.array.welcome_message_variants);
         mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-        mEventSubIcon = R.drawable.ic_quickspace_crdroid;
+        mEventSubIcon = R.drawable.ic_quickspace_matrixx;
         mGreetings = mContext.getResources().getString(R.string.quickspace_grt_general);
         mClockExt = mContext.getResources().getString(R.string.quickspace_ext_two);
 
@@ -305,7 +305,7 @@ public class QuickEventsController {
         } else if (luckNumber == 7) {
             mPSAStr = mContext.getResources().getStringArray(R.array.quickspace_psa_random);
             mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-            mEventSubIcon = R.drawable.ic_quickspace_crdroid;
+            mEventSubIcon = R.drawable.ic_quickspace_matrixx;
             mIsQuickEvent = true;
             return;
         }

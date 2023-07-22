@@ -163,11 +163,11 @@
     <string name="show_quickspace_title">快速查看</string>
     <string name="show_quickspace_summary">在主畫面頂端顯示</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">歡迎來到 crDroid ！</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid 時間！</string>
+    <string name="quick_event_rom_intro_welcome">歡迎來到 Matrixx ！</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx 時間！</string>
     <string-array name="welcome_message_variants">
-        <item>感謝您選用 crDroid</item>
-        <item>喜歡 crDroid 嗎？請我們喝杯啤酒吧</item>
+        <item>感謝您選用 Matrixx</item>
+        <item>喜歡 Matrixx 嗎？請我們喝杯啤酒吧</item>
         <item>史上最棒的系統</item>
         <item>到 Telegram 群組跟我們打個招呼吧</item>
         <item>輕觸此處開始</item>
@@ -305,12 +305,12 @@
         <item>哦，嘿，今天怎麼樣？</item>
         <item>專心工作</item>
         <item>你截了幾張圖？</item>
-        <item>和 crDroid 一起打開美好</item>
+        <item>和 Matrixx 一起打開美好</item>
         <item>用愛傳遞正能量</item>
         <item>先起頭的可不是我們！</item>
         <item>是時候播些好音樂了</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C 標頭</item>
-        <item>你需要 crDroid Premium 才能看到這個內容</item>
+        <item>你需要 Matrixx Premium 才能看到這個內容</item>
         <item>記住獨角獸的血統 (Remember the Lineage of the Unicorn)</item>
         <item>享受延長 (Xtended) 的電池壽命吧</item>
         <item>從零開始</item>

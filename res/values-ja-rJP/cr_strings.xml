@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">At A Glance</string>
     <string name="show_quickspace_summary">ホーム画面の上部に表示します</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">crDroid にようこそ!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid の時間！</string>
+    <string name="quick_event_rom_intro_welcome">Matrixx にようこそ!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx の時間！</string>
     <string-array name="welcome_message_variants">
         <item>私たちを選んでくれてありがとう</item>
         <item>私たちが好きですか? ビールをおごって下さい</item>
@@ -305,12 +305,12 @@
         <item>こんにちは、何かありましたか?</item>
         <item>仕事に集中しましょう</item>
         <item>スクリーンショットは何枚撮りますか?</item>
-        <item>crDroid でのオープンな良さ</item>
+        <item>Matrixx でのオープンな良さ</item>
         <item>Havoc ではない愛が広がる</item>
         <item>私達は火をつけていません!</item>
         <item>良い音楽を聴く時間です</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
-        <item>これを見るには crDroid Premium が必要です</item>
+        <item>これを見るには Matrixx Premium が必要です</item>
         <item>ユニコーンの Lineage を覚えておいて下さい</item>
         <item>Xtended なバッテリーライフを楽しんでください！</item>
         <item>グラウンドゼロから始める</item>
