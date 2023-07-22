@@ -169,8 +169,8 @@
     <string name="show_quickspace_title">Na prvi pogled</string>
     <string name="show_quickspace_summary">Show at the top of your home screen</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Dobrodošli na crDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid time!</string>
+    <string name="quick_event_rom_intro_welcome">Dobrodošli na Matrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx time!</string>
     <string-array name="welcome_message_variants">
         <item>Hvala Vam što ste izabrali nas</item>
         <item>Sviđamo Vam se? Pošaljite nam pivo</item>
@@ -308,19 +308,19 @@
         <item>Neznanje je Sreća</item>
         <item>Da li je već vreme za novo ažuriranje?</item>
         <item>Make peace, not war</item>
-        <item>Zdravo, šta ima?</item>
-        <item>Welcome to real Matrix!</item>
-        <item>Koliko snimaka ekrana napravite?</item>
-        <item>Otkrijte dobre stvari uz crDroid</item>
+        <item>Oh hey, what\'s up?</item>
+        <item>Welcome to real Matrixx!</item>
+        <item>How many screenshots do you take?</item>
+        <item>Open goodness with Matrixx</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
-        <item>Vreme je za malo muzike</item>
-        <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C GLAVA</item>
-        <item>Treba Vam crDroid Premium kako biste videli ovo</item>
-        <item>Setite se Loze Jednoroga</item>
-        <item>Uživajte u Xtendnom trajanju baterije</item>
-        <item>Počinjemo od nule</item>
-        <item>Volimo Vas 3000</item>
+        <item>Time for some good music</item>
+        <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
+        <item>You need Matrixx Premium to see this</item>
+        <item>Remember the Lineage of the Unicorn</item>
+        <item>Enjoy Xtended battery life</item>
+        <item>Starting from the ground zero</item>
+        <item>We love you 3000</item>
         <item>Delicious even without Sushi</item>
         <item>Radite nešto lepo danas</item>
         <item>Ovo je najbolji Iskustvo Pixela, zar ne?</item>
