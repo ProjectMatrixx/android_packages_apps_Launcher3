@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">Pikakatselu</string>
     <string name="show_quickspace_summary">Näytä aloitusnäytön yläosassa</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Tervetuloa crDroidiin!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroidin aika!</string>
+    <string name="quick_event_rom_intro_welcome">Tervetuloa Matrixxiin!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixxin aika!</string>
     <string-array name="welcome_message_variants">
         <item>Kiitos että valitsit meidät</item>
         <item>Rakastatko meitä? Lähetä meille olutta</item>
@@ -305,12 +305,12 @@
         <item>Ai hei, mitä kuuluu?</item>
         <item>Keskity tehtäviisi</item>
         <item>Kuinka monta kuvakaappausta otat?</item>
-        <item>Avaa hyvyys crDroidilla</item>
+        <item>Avaa hyvyys Matrixxilla</item>
         <item>Levitä rakkautta, älä tuhoa</item>
         <item>Emme aloittaneet tulta!</item>
         <item>Aika kuunnella hyvää musiikkia</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C PÄÄ</item>
-        <item>Tarvitset crDroid Premiumin nähdäksesi tämän</item>
+        <item>Tarvitset Matrixx Premiumin nähdäksesi tämän</item>
         <item>Muista yksisarvisen sukulinja</item>
         <item>Nauti pidemmästä akun kestosta</item>
         <item>Aloita alkupisteestä</item>

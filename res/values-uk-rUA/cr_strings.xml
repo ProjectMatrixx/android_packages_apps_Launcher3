@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">Найголовніше</string>
     <string name="show_quickspace_summary">Показувати вгорі домашнього екрана</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Ласкаво просимо до crDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid час!</string>
+    <string name="quick_event_rom_intro_welcome">Ласкаво просимо до Matrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx час!</string>
     <string-array name="welcome_message_variants">
         <item>Дякуємо, що обрали нас</item>
         <item>Подобається наша робота? Віддячте матеріально</item>
@@ -305,12 +305,12 @@
         <item>Привіт, що відбувається?</item>
         <item>Сфокусуйтеся на ваших справах</item>
         <item>Скільки знімків екрану ви робите?</item>
-        <item>Відкрийте добро з crDroid</item>
+        <item>Відкрийте добро з Matrixx</item>
         <item>Розповсюджуйте любов, а не хаос</item>
         <item>Не ми почали пожежу!</item>
         <item>Час для якоїсь хорошої музики</item>
         <item>Голова</item>
-        <item>Вам потрібен crDroid Premium щоб побачити це</item>
+        <item>Вам потрібен Matrixx Premium щоб побачити це</item>
         <item>Пам\'ятайте схему єдинорога</item>
         <item>Насолоджуйтесь подовженим життям батарейки</item>
         <item>Починаючи з нуля</item>

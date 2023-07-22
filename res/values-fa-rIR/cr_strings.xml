@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">در یک دید</string>
     <string name="show_quickspace_summary">در بالای صفحه اصلی نمایش داده شود</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">به crDroid خوش آمدید!</string>
-    <string name="quick_event_rom_intro_welcome_ext">زمان crDroid!</string>
+    <string name="quick_event_rom_intro_welcome">به Matrixx خوش آمدید!</string>
+    <string name="quick_event_rom_intro_welcome_ext">زمان Matrixx!</string>
     <string-array name="welcome_message_variants">
         <item>Thank you for choosing us</item>
         <item>Loving us? Send us a beer</item>
@@ -310,12 +310,12 @@
         <item>هی، چه خبرا؟</item>
         <item>روی کارات تمرکز کن</item>
         <item>چقدر اسکرین‌شات می‌گیری؟</item>
-        <item>با crDroid به خوبی‌ها سلام کن</item>
+        <item>با Matrixx به خوبی‌ها سلام کن</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>وقت چندتا آهنگ خوبه</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
-        <item>برای دیدن این قسمت، به نسخه کامل crDroid نیاز داری</item>
+        <item>برای دیدن این قسمت، به نسخه کامل Matrixx نیاز داری</item>
         <item>اصل و نسب تک‌شاخ رو بخاطر داشته باش
 Remember the Lineage of the Unicorn</item>
         <item>از طول عمر Xtended باتری لذت ببر</item>

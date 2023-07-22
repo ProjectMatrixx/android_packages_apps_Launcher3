@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">एक नज़र में</string>
     <string name="show_quickspace_summary">Show at the top of your home screen</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">crDroid में आपका स्वागत है</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid time!</string>
+    <string name="quick_event_rom_intro_welcome">Matrixx में आपका स्वागत है</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx time!</string>
     <string-array name="welcome_message_variants">
         <item>Thank you for choosing us</item>
         <item>Loving us? Send us a beer</item>
@@ -305,12 +305,12 @@
         <item>अरे, क्या हाल है?</item>
         <item>अपने कार्यों पर ध्यान दें</item>
         <item>आप कितने स्क्रीनशॉट लेते हैं?</item>
-        <item>crDroid के साथ अच्छाई खोलें</item>
+        <item>Matrixx के साथ अच्छाई खोलें</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>कुछ अच्छे संगीत के लिए समय</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C सिर</item>
-        <item>इसे देखने के लिए आपको crDroid Premium चाहिए</item>
+        <item>इसे देखने के लिए आपको Matrixx Premium चाहिए</item>
         <item>यूनिकॉर्न की वंशावली याद रखें</item>
         <item>विस्तारित बैटरी जीवन का आनंद लें</item>
         <item>ग्राउंड जीरो से शुरू</item>
