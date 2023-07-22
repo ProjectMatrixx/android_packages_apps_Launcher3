@@ -172,8 +172,8 @@
     <string name="show_quickspace_title">D\'una ullada</string>
     <string name="show_quickspace_summary">Show at the top of your home screen</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Benvingut al crDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">Hora de crDroid!</string>
+    <string name="quick_event_rom_intro_welcome">Benvingut al Matrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Hora de Matrixx!</string>
     <string-array name="welcome_message_variants">
         <item>Gràcies per triar-nos</item>
         <item>T\'agrada el crDroid? Convida als desenvolupadors a una cervesa</item>
@@ -314,12 +314,12 @@
         <item>Ei, com estàs?</item>
         <item>Centra’t en les teves tasques</item>
         <item>Quantes captures de pantalla fas?</item>
-        <item>Descobreix el millor amb crDroid</item>
+        <item>Descobreix el millor amb Matrixx</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>Moment d\'escoltar un poc de bona música</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C CAP</item>
-        <item>Necessites crDroid Prèmium per a poder vore açò</item>
+        <item>Necessites Matrixx Prèmium per a poder vore açò</item>
         <item>Recorda el llinatge de l\'unicorn</item>
         <item>Gaudeix de la vida extesa de la bateria</item>
         <item>Començant des de zero</item>
