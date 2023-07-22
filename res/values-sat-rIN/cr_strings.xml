@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">ᱢᱤᱫᱽ ᱡᱷᱚᱞᱠ ᱛᱮ</string>
     <string name="show_quickspace_summary">Show at the top of your home screen</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">crDroid ᱨᱮ ᱥᱟᱹᱜᱩᱱ ᱫᱟᱨᱟᱢ!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid time!</string>
+    <string name="quick_event_rom_intro_welcome">Matrixx ᱨᱮ ᱥᱟᱹᱜᱩᱱ ᱫᱟᱨᱟᱢ!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx time!</string>
     <string-array name="welcome_message_variants">
         <item>Thank you for choosing us</item>
         <item>Loving us? Send us a beer</item>
@@ -305,12 +305,12 @@
         <item>ᱚ ᱭᱮ, ᱣᱷᱟᱹᱴᱥ ᱟᱹᱯ?</item>
         <item>ᱟᱢᱟᱜ ᱠᱟᱹᱢᱤ ᱨᱮ ᱯᱷᱚᱠᱟᱹᱥ ᱢᱮ</item>
         <item>ᱛᱤᱱᱟᱹᱝ ᱜᱟᱱ ᱥᱠᱨᱤᱱᱥᱚᱴ ᱮᱢ ᱤᱫᱤᱮᱫᱟ?</item>
-        <item>crDroid ᱥᱟᱞᱟᱜ ᱵᱮᱥ ᱡᱤᱱᱥᱤ ᱠᱷᱩᱞᱟᱫᱭ ᱢᱮ</item>
+        <item>Matrixx ᱥᱟᱞᱟᱜ ᱵᱮᱥ ᱡᱤᱱᱥᱤ ᱠᱷᱩᱞᱟᱫᱭ ᱢᱮ</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>ᱵᱮᱥ ᱥᱮᱨᱮᱧ ᱞᱟᱹᱜᱤᱫ ᱚᱠᱛᱚ ᱚᱲᱚᱠ ᱢᱮ</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C ᱵᱚᱦᱚᱜ</item>
-        <item>ᱱᱚᱶᱟ ᱧᱮᱞ ᱞᱟᱹᱜᱤᱫ crDroid ᱯᱨᱢᱤᱭᱟᱹᱢ ᱫᱚᱨᱠᱟᱨ ᱛᱟᱢ</item>
+        <item>ᱱᱚᱶᱟ ᱧᱮᱞ ᱞᱟᱹᱜᱤᱫ Matrixx ᱯᱨᱢᱤᱭᱟᱹᱢ ᱫᱚᱨᱠᱟᱨ ᱛᱟᱢ</item>
         <item>ᱭᱩᱱᱤᱠᱚᱨᱱ ᱨᱮᱭᱟᱜ Lineage ᱩᱭᱦᱟᱹᱨ ᱠᱟᱜ ᱢᱮ</item>
         <item>ᱵᱚᱲᱦᱟᱣ ᱠᱟᱱ ᱵᱽᱮᱴᱨᱭ ᱡᱤᱣᱚᱱ ᱥᱟᱞᱟᱜ ᱢᱚᱡᱽ ᱢᱮ</item>
         <item>ᱜᱨᱟᱩᱸᱰ ᱡᱤᱨᱚ ᱥᱟᱞᱟᱜ ᱮᱦᱚᱵᱚᱜ  ᱠᱟᱱᱟ</item>

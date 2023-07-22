@@ -164,7 +164,7 @@
     <string name="show_quickspace_summary">Ana ekranınızın üst kısmında göster</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
     <string name="quick_event_rom_intro_welcome">CrDroid\'e hoş geldiniz!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid zamanı!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx zamanı!</string>
     <string-array name="welcome_message_variants">
         <item>Bizi seçtiğin için teşekkür ederiz</item>
         <item>Bizi seviyor musun? İçecek bir şeyler ısmarlayabilirsin</item>
@@ -310,7 +310,7 @@
         <item>Yangını biz başlatmadık!</item>
         <item>Bazı güzel müzikler için doğru zaman</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C BAŞ</item>
-        <item>Bunu görmek için crDroid Premium\'a ihtiyacınız var</item>
+        <item>Bunu görmek için Matrixx Premium\'a ihtiyacınız var</item>
         <item>Unicorn soyunu hatırla</item>
         <item>Daha uzun pil ömrünün keyfini çıkarın</item>
         <item>Sıfırdan başlayarak</item>
