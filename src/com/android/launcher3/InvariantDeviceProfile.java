@@ -52,7 +52,11 @@ import androidx.core.content.res.ResourcesCompat;
 import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.customization.IconDatabase;
 import com.android.launcher3.icons.DotRenderer;
+<<<<<<< HEAD
 import com.android.launcher3.logging.FileLog;
+=======
+import com.android.launcher3.LauncherAppState;
+>>>>>>> 1c8e9e2719 (Ortus Launcher: Integrate themed icons picker to Launcher3)
 import com.android.launcher3.model.DeviceGridState;
 import com.android.launcher3.provider.RestoreDbTask;
 import com.android.launcher3.testing.shared.ResourceUtils;
@@ -355,6 +359,9 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
             case KEY_ALLAPPS_THEMED_ICONS:
             case IconDatabase.KEY_ICON_PACK:
                 onConfigChanged(mContext);
+                break;
+            case IconDatabase.KEY_THEMED_ICON_PACK:
+                LauncherAppState.getInstanceNoCreate().setNeedsRestart();
                 break;
         }
     }
