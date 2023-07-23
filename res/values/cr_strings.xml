@@ -16,6 +16,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- Themed Icons -->
+    <string name="themed_icons_category_title">Themed Icons</string>
+    <string name="themed_icon_pack_disabled">Disabled</string>
+    <string name="icon_pack_no_browser">There\'s no available browser</string>
+
     <!-- Application name -->
     <string name="matrixx_app_name" translatable="false">Matrixx Home</string>
 
@@ -168,7 +173,7 @@
     <string name="recents_shake_clear_all_title">Shake phone to clear all tasks</string>
 
     <!-- All apps themed icons -->
-    <string name="pref_themed_icons_title">Themed icons</string>
+    <string name="pref_themed_icons_title">Apply themed icons to app drawer</string>
     <string name="pref_themed_icons_summary">Follow themed icons used on home screen</string>
 
     <!-- AppInfo -->
