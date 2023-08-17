@@ -5,7 +5,7 @@ import static com.android.launcher3.util.Executors.UI_HELPER_EXECUTOR;
 import static com.android.launcher3.util.Themes.KEY_THEMED_ICON_PACK;
 import static com.android.launcher3.util.Themes.isThemedIconEnabled;
 import static com.android.launcher3.util.Themes.getThemedIconPack;
-
+import static com.android.launcher3.LauncherPrefs.getPrefs;
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentValues;
