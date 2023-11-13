@@ -36,7 +36,7 @@
             android:id="@+id/action_screenshot"
             style="@style/OverviewActionButton"
             android:layout_width="60dp"
-            android:layout_height="36dp"
+            android:layout_height="42dp"
             android:foreground="@drawable/ic_screenshot"
             android:layout_gravity="center_vertical"
             android:foregroundGravity="center" />
@@ -67,7 +67,7 @@
             android:id="@+id/action_split"
             style="@style/OverviewActionButton"
             android:layout_width="60dp"
-            android:layout_height="36dp"
+            android:layout_height="42dp"
             android:foreground="@drawable/ic_split_horizontal"
             android:layout_gravity="center_vertical"
             android:foregroundGravity="center"
@@ -84,7 +84,7 @@
             android:id="@+id/action_lens"
             style="@style/OverviewActionButton"
             android:layout_width="60dp"
-            android:layout_height="36dp"
+            android:layout_height="42dp"
             android:foreground="@drawable/ic_lens"
             android:layout_gravity="center_vertical"
             android:foregroundGravity="center" />
@@ -99,7 +99,7 @@
             android:id="@+id/action_clear_all"
             style="@style/OverviewActionButton"
             android:layout_width="60dp"
-            android:layout_height="36dp"
+            android:layout_height="42dp"
             android:foreground="@drawable/ic_clear_all"
             android:layout_gravity="center_vertical"
             android:foregroundGravity="center" />
