@@ -140,7 +140,7 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
     private boolean mLock;
     private boolean mKillApp;
 
-    private final Launcher mLauncher;
+    private Launcher mLauncher;
 
     public OverviewActionsView(Context context) {
         this(context, null);
@@ -161,7 +161,11 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
         prefs.registerOnSharedPreferenceChangeListener(this);
         mShakeUtils = new ShakeUtils(context);
         mShakeClearAll = prefs.getBoolean(KEY_RECENTS_SHAKE_CLEAR_ALL, true);
-        mLauncher = isHomeApp(context) ? Launcher.getLauncher(context) : null;
+        try {
+            mLauncher = isHomeApp(context) ? Launcher.getLauncher(context) : null;
+        } catch (Exception e) {
+            mLauncher = null;
+        }
     }
 
     @Override
