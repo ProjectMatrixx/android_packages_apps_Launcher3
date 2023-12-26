@@ -158,20 +158,20 @@
     <string name="pref_restart_summary">Uruchom ponownie launcher ręcznie, aby zastosować wszystkie oczekujące ustawienia</string>
     <string name="restarting_launcher">Restartowanie launchera...</string>
     <string name="restarting_launcher_changes">Ponowne uruchamianie launchera, aby zastosować zmiany...</string>
-    <string name="updating_launcher_components">Ponowne uruchamianie launchera, aby zaktualizować komponenty launchera...</string>
+    <string name="updating_launcher_components">Ponowne uruchamianie launchera, aby zaktualizować jego komponenty...</string>
     <!-- QuickSpace -->
     <string name="show_quickspace_title">W skrócie</string>
     <string name="show_quickspace_summary">Pokaż w górnej części ekranu głównego</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Witaj w crDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">Czas na crDroid!</string>
+    <string name="quick_event_rom_intro_welcome">Witaj w Matrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Czas na Matrixx!</string>
     <string-array name="welcome_message_variants">
         <item>Dziękujemy za wybranie nas</item>
         <item>Lubisz nas? Kup nam piwo</item>
-        <item>Najlepszy system wszechczasów.</item>
+        <item>Najlepszy system wszech czasów</item>
         <item>Przywitaj się z nami na Telegramie</item>
         <item>Dotknij tutaj, aby rozpocząć</item>
-        <item>Uwielbiamy Cię tysiąckrotnie</item>
+        <item>Kochamy cię razy 3000</item>
     </string-array>
     <!-- QuickSpace: QuickEvent: Greetings -->
     <string name="quickspace_grt_morning">Dzień dobry.</string>
@@ -199,21 +199,21 @@
         <item>Dzień dobry, pora na działanie!</item>
         <item>Ależ piękny dzień!</item>
         <item>Miłego dnia!</item>
-        <item>A może 5-cio minutowa drzemka?</item>
+        <item>A może pięciominutowa drzemka?</item>
         <item>Zajmijmy się tym.</item>
         <item>Poranki to świeże płótno na twoje codzienne mistrzostwo.</item>
         <item>Każdego ranka ciesz się wschodem słońca możliwości.</item>
         <item>We wczesnym świetle znajdź moc, aby oświetlić swoją ścieżkę.</item>
-        <item>Twój dzień zaczyna się od nieskończonych się możliwości.</item>
+        <item>Twój dzień zaczyna się od nieskończonych możliwości.</item>
         <item>Każdy wschód słońca przypomina, że można zacząć od nowa.</item>
         <item>Obudź się z celem, żeby znów zwyciężyć.</item>
         <item>Twoje myśli mogą być podstawą wielkich osiągnięć.</item>
         <item>Świat budzi się, podobnie jak twój potencjał.</item>
         <item>Pierwszy rozdział twojej codziennej przygody.</item>
         <item>Niech twoja poranna rutyna będzie wyjściem dla sukcesu.</item>
-        <item>Wschód słońca lub nie, Twój potencjał zawsze rośnie.</item>
+        <item>Wschód słońca lub nie, twój potencjał zawsze rośnie.</item>
         <item>Nadszedł czas na świeże pomysły i odważne działania.</item>
-        <item>Skowronki łapią robaki, ale Ty możesz złapać swoje marzenia.</item>
+        <item>Skowronki łapią robaki, ale ty możesz złapać swoje marzenia.</item>
         <item>Znajdź w sobie odwagę, by podążać za swoimi pragnieniami.</item>
         <item>Powstań i zabłyśnij, bo wielkość czeka.</item>
         <item>Najlepszym momentem, by zacząć — jest teraz.</item>
@@ -244,7 +244,7 @@
         <item>Ciesz się chwilą obecną, bez względu na godzinę.</item>
         <item>W każdym zmierzchu znajdź nowy świt możliwości.</item>
         <item>Życie to podróż, ciesz się jej scenerią.</item>
-        <item>Twoja postawa kształtuje Twoją rzeczywistość.</item>
+        <item>Twoja postawa kształtuje twoją rzeczywistość.</item>
         <item>Twoja historia jest wciąż zapisywana, nawet po zachodzie słońca.</item>
         <item>Uchwyć piękno zwykłych chwil.</item>
         <item>Nadszedł czas na refleksję i reset.</item>
@@ -283,7 +283,7 @@
         <item>Noce to ciche szepty możliwości.</item>
         <item>W ciszy nocy odnajdź swoją wewnętrzną siłę.</item>
         <item>Obejmij ciemność, ponieważ zawiera ona klucze do twoich marzeń.</item>
-        <item>Świat śpi, ale twój potencjał jest szeroko obudzony.</item>
+        <item>Świat śpi, ale twój potencjał jest w pełni obudzony.</item>
         <item>Noc może być późna, ale twoje ambicje są ponadczasowe.</item>
         <item>Bądź ciekawy, nie śpij i pozwól, aby noce cię prowadziły.</item>
         <item>Znajdź w sobie odwagę, by gonić za marzeniami.</item>
@@ -305,17 +305,17 @@
         <item>Hej, co słychać?</item>
         <item>Skoncentruj się na swoich zadaniach</item>
         <item>Ile zrzutów ekranu robisz?</item>
-        <item>Spersonalizuj swój system z crDroid</item>
-        <item>Szerz miłość nie spustoszenie</item>
+        <item>Spersonalizuj swój system z Matrixx</item>
+        <item>Szerz miłość, a nie spustoszenie</item>
         <item>Nie rozpoczęliśmy ognia!</item>
         <item>Czas na dobrą muzykę</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C GŁÓWNY</item>
-        <item>Potrzebujesz crDroid Premium, aby to zobaczyć</item>
+        <item>Potrzebujesz Matrixx Premium, aby to zobaczyć</item>
         <item>Pamiętaj the Lineage of the Unicorn</item>
         <item>Ciesz się wydłużonym czasem baterii</item>
         <item>Zaczynamy od początku</item>
-        <item>Uwielbiamy Cię tysiąckrotnie</item>
-        <item>Pyszny nawet bez Sushi</item>
+        <item>Kochamy cię razy 3000</item>
+        <item>Pyszny nawet bez sushi</item>
         <item>Zrób dziś coś miłego</item>
         <item>To najlepsze Pixel Experience, prawda?</item>
         <item>Brak iluzji, witaj w rzeczywistości!</item>
