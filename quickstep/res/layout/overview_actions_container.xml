@@ -24,6 +24,43 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/overview_actions_height"
         android:layout_gravity="bottom|center_horizontal"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/clear_all_container"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/action_clear_all"
+            style="@style/OverviewActionButton"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:text="@string/recents_clear_all_title"
+            android:textColor="?android:attr/colorAccent"
+            android:foregroundGravity="center" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+         </LinearLayout>
+
+    <LinearLayout
+    	android:id="@+id/second_overview_actions_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <Space
@@ -90,22 +127,6 @@
             android:foregroundGravity="center" />
 
         <Space
-            android:id="@+id/clear_all_space"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/action_clear_all"
-            style="@style/OverviewActionButton"
-            android:layout_width="60dp"
-            android:layout_height="42dp"
-            android:foreground="@drawable/ic_clear_all"
-            android:layout_gravity="center_vertical"
-            android:foregroundGravity="center" />
-           
-
-        <Space
             android:id="@+id/kill_app_space"
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -133,4 +154,5 @@
             android:visibility="gone" />
     </LinearLayout>
 
+</LinearLayout>
 </com.android.quickstep.views.OverviewActionsView>
