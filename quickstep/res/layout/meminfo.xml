@@ -6,4 +6,8 @@
     android:layout_height="wrap_content"
     android:textColor="@color/overview_button"
     android:textSize="12sp"
+    android:background="@drawable/meminfo_bg"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="6dp"
+    android:gravity="center_vertical"
     android:visibility="gone"/>
