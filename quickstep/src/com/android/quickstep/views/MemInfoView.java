@@ -154,9 +154,33 @@ public class MemInfoView extends TextView {
             mActivityManager.getMemoryInfo(memInfo);
             String availResult = Formatter.formatShortFileSize(mContext,
                     (long) memInfo.availMem);
-            String totalResult = Formatter.formatShortFileSize(mContext,
-                    (long) memInfo.totalMem);
-            String text = String.format(mMemInfoText, availResult, totalResult);
+
+            long totRam = memInfo.totalMem;
+            double gigs = (double) totRam / 1073741824.0;
+
+		    String aproxRam;
+            if (gigs > 0 && gigs <= 2) {
+                aproxRam = "2";
+            } else if (gigs > 2 && gigs <= 3) {
+                aproxRam = "3";
+            } else if (gigs > 3 && gigs <= 4) {
+                aproxRam = "4";
+            } else if (gigs > 4 && gigs <= 6) {
+                aproxRam = "6";
+            } else if (gigs > 6 && gigs <= 8) {
+                aproxRam = "8";
+            } else if (gigs > 8 && gigs <= 12) {
+                aproxRam = "12";
+            } else if (gigs > 12 && gigs <= 16) {
+                aproxRam = "16";
+            } else if (gigs > 16 && gigs <= 24) {
+                aproxRam = "24";
+            } else if (gigs > 24) {
+                aproxRam = "24+";
+            } else {
+                aproxRam = "null";
+            }
+            String text = String.format(mMemInfoText, availResult, aproxRam.concat(" GB"));
             setText(text);
             mHandler.postDelayed(this, 1000);
         }
