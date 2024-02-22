@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">At A Glance</string>
     <string name="show_quickspace_summary">Show at the top of your home screen</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">بەخێربێیت بۆ crDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid time!</string>
+    <string name="quick_event_rom_intro_welcome">بەخێربێیت بۆ Matrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">Matrixx time!</string>
     <string-array name="welcome_message_variants">
         <item>سپاستەکەین بۆ هەڵبژاردنی ئێمە</item>
         <item>ئێمەت خۆشەوێ؟ دیاریمان پێشکەش بکە</item>
@@ -305,12 +305,12 @@
         <item>سڵاو، چی هەیە؟</item>
         <item>سەرنج بخەرە سەر ئەرکەکانت</item>
         <item>چەندێک ڕوونماکەت ئەچرکێنی؟</item>
-        <item>کردنەوەی goodness لەگەڵ crDroid</item>
+        <item>کردنەوەی goodness لەگەڵ Matrixx</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>کاتی گوێگرتن لە میوزیکە</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C سەر</item>
-        <item>پێویستت بە crDroid ی نایاب هەیە بۆ بینینی ئەمە</item>
+        <item>پێویستت بە Matrixx ی نایاب هەیە بۆ بینینی ئەمە</item>
         <item>Xêla Unicorn bi bîr bînin</item>
         <item>چێژ لە تەمەنی پاتری زیاتر وەرگرە</item>
         <item>دەسپێک لە تەواوی سفرەوە</item>
