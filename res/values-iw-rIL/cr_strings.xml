@@ -163,8 +163,8 @@
     <string name="show_quickspace_title">בקצרה</string>
     <string name="show_quickspace_summary">הצגה בקצה העליון של מסך הבית שלך</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">ברוכים הבאים לcrDroid!</string>
-    <string name="quick_event_rom_intro_welcome_ext">בדיוק הזמן ל-crDroid!</string>
+    <string name="quick_event_rom_intro_welcome">ברוכים הבאים לMatrixx!</string>
+    <string name="quick_event_rom_intro_welcome_ext">בדיוק הזמן ל-Matrixx!</string>
     <string-array name="welcome_message_variants">
         <item>תודה לך על בחירתך בנו</item>
         <item>אהבת אותנו? אפשר לשלוח לנו כוס בירה</item>
@@ -305,12 +305,12 @@
         <item>היי, מה קורה?</item>
         <item>תתמקד במשימות שלך</item>
         <item>כמה צילומי מסך אתה מצלם?</item>
-        <item>טוב לב עם crDroid</item>
+        <item>טוב לב עם Matrixx</item>
         <item>הפיצו אהבה, לא חורבן</item>
         <item>לא אנחנו הצתנו את הלהבה!</item>
         <item>הגיע הזמן לקצת מוזיקה טובה</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
-        <item>אתה צריך crDroid Premium כדי לראות את זה</item>
+        <item>אתה צריך Matrixx Premium כדי לראות את זה</item>
         <item>זכור מאין הגעת ולאן אתה הולך</item>
         <item>תיהנה מחיי סוללה ארוכים</item>
         <item>והתחלנו מכלום ושום דבר...</item>
