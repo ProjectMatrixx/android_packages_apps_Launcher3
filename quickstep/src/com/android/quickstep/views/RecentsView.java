@@ -4199,6 +4199,11 @@ public abstract class RecentsView<ACTIVITY_TYPE extends StatefulActivity<STATE_T
     @SuppressWarnings("unused")
     private void dismissAllTasks(View view) {
         runDismissAnimation(createAllTasksDismissAnimation(DISMISS_TASK_DURATION));
+        if (Utilities.isActionToastEnabled(mActivity)) {
+            Toast allAppsCleared = Toast.makeText(mActivity, R.string.recents_all_apps_cleared,
+                  Toast.LENGTH_SHORT);
+            allAppsCleared.show();
+        }
         mActivity.getStatsLogManager().logger().log(LAUNCHER_TASK_CLEAR_ALL);
     }
 

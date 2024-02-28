@@ -317,6 +317,7 @@
     <string name="desktop_button_close_app_toast">Cancel</string>
 
     <!-- Toast for Clear All -->
+    <string name="recents_all_apps_cleared">All Apps Cleared</string>
     <string name="recents_app_unlocked">App Unlocked</string>
     <string name="recents_app_locked">App Locked</string>
 </resources>
