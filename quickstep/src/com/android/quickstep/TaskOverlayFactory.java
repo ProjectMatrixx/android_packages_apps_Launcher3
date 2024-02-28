@@ -22,7 +22,6 @@ import static com.android.quickstep.views.OverviewActionsView.DISABLED_NO_THUMBN
 import static com.android.quickstep.views.OverviewActionsView.DISABLED_ROTATED;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
 import android.content.Context;
@@ -31,10 +30,8 @@ import android.graphics.Insets;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Build;
-import android.text.format.Formatter;
 import android.os.UserHandle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -158,20 +155,12 @@ public class TaskOverlayFactory implements ResourceBasedOverride {
 
         private T mActionsView;
         protected ImageActionsApi mImageApi;
-        private ActivityManager mActivityManager;
-        private ActivityManager.MemoryInfo memInfo;
-        private String mMemInfoText;
-        private String mOptimalMemText;
 
         protected TaskOverlay(TaskThumbnailView taskThumbnailView) {
             mApplicationContext = taskThumbnailView.getContext().getApplicationContext();
             mThumbnailView = taskThumbnailView;
             mImageApi = new ImageActionsApi(
                     mApplicationContext, mThumbnailView::getThumbnail);
-            mActivityManager = (ActivityManager) mApplicationContext.getSystemService(Context.ACTIVITY_SERVICE);
-            memInfo = new ActivityManager.MemoryInfo();
-            mMemInfoText = mApplicationContext.getResources().getString(R.string.freed_memory_text);
-            mOptimalMemText = mApplicationContext.getResources().getString(R.string.optimal_memory_text);
         }
 
         protected T getActionsView() {
@@ -236,22 +225,8 @@ public class TaskOverlayFactory implements ResourceBasedOverride {
             if (mThumbnailView == null || mThumbnailView.getTaskView() == null || mThumbnailView.getTaskView().getRecentsView() == null) {
                 return;
             }
-            long wasAvailMem = calculateAvailableMemory();
             RecentsView recentsView = mThumbnailView.getTaskView().getRecentsView();
             recentsView.dismissAllTasks();
-            long freeMem = wasAvailMem - calculateAvailableMemory();
-            if (freeMem > 1000) {
-                String result = Formatter.formatShortFileSize(mApplicationContext, freeMem);
-                String text = String.format(mMemInfoText, result);
-                Toast.makeText(mApplicationContext, text, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(mApplicationContext, mOptimalMemText, Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private long calculateAvailableMemory() {
-            mActivityManager.getMemoryInfo(memInfo);
-            return memInfo.availMem;
         }
 
         private void launchLens() {
