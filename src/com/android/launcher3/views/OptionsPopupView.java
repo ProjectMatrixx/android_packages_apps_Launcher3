@@ -56,6 +56,8 @@ import com.android.launcher3.widget.picker.WidgetsFullSheet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.internal.util.crdroid.Utils;
+
 /**
  * Popup shown on long pressing an empty space in launcher
  *
@@ -70,6 +72,8 @@ public class OptionsPopupView<T extends Context & ActivityContext> extends Arrow
     // An intent extra to indicate the launch source by launcher.
     private static final String EXTRA_WALLPAPER_LAUNCH_SOURCE =
             "com.android.wallpaper.LAUNCH_SOURCE";
+    private static final String DEFAULT_WP_PKG = "com.android.wallpaper";
+    private static final String GOOGLE_WP_PKG = "com.google.android.apps.wallpaper";
 
     private final ArrayMap<View, OptionItem> mItemMap = new ArrayMap<>();
     private RectF mTargetRect;
@@ -280,7 +284,8 @@ public class OptionsPopupView<T extends Context & ActivityContext> extends Arrow
                         launcher.getWorkspace().getWallpaperOffsetForCenterPage())
                 .putExtra(EXTRA_WALLPAPER_LAUNCH_SOURCE, "app_launched_launcher")
                 .putExtra(EXTRA_WALLPAPER_FLAVOR, "focus_wallpaper");
-        String pickerPackage = launcher.getString(R.string.wallpaper_picker_package);
+        final boolean isGoogleWpInstalled = Utils.isPackageInstalled(v.getContext(), GOOGLE_WP_PKG);
+        String pickerPackage = isGoogleWpInstalled ? GOOGLE_WP_PKG : DEFAULT_WP_PKG;
         if (!TextUtils.isEmpty(pickerPackage)) {
             intent.setPackage(pickerPackage);
         }
