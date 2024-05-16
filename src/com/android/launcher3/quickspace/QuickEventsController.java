@@ -77,42 +77,8 @@ public class QuickEventsController {
         psonalityEvent();
     }
 
-<<<<<<< HEAD
     public void updatePsonality() {
         psonalityEvent();
-=======
-    private void deviceIntroEvent() {
-        mIsQuickEvent = true;
-
-        if (Utilities.useAlternativeQuickspaceUI(mContext)) {
-            mEventTitle = mResources.getString(R.string.quick_event_rom_intro_welcome_ext);
-        } else {
-            mEventTitle = mResources.getString(R.string.quick_event_rom_intro_welcome);
-        }
-        mPSAStr = mResources.getStringArray(R.array.welcome_message_variants);
-        mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-        mEventSubIcon = ContextCompat.getDrawable(mContext, R.drawable.ic_quickspace_matrixx);
-        mGreetings = mResources.getString(R.string.quickspace_grt_general);
-        mClockExt = mResources.getString(R.string.quickspace_ext_two);
-
-        mEventTitleSubAction = new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mContext.getSharedPreferences(LauncherFiles.SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE)
-                        .edit()
-                        .putBoolean(SETTING_DEVICE_INTRO_COMPLETED, true)
-                        .commit();
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                try {
-                    Launcher.getLauncher(mContext).startActivitySafely(view, intent, null);
-                } catch (ActivityNotFoundException ex) {
-                }
-                mIsQuickEvent = false;
-            }
-        };
->>>>>>> a4a138698c (Launcher3: Init Matrixx)
     }
 
     private void nowPlayingEvent() {
