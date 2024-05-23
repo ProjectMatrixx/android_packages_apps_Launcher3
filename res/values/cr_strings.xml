@@ -415,6 +415,13 @@
     <string name="quick_event_weather_city_summary">Display current weather location</string>
     <string name="quick_event_weather_text_title">Current condition</string>
     <string name="quick_event_weather_text_summary">Display current weather condition summary</string>
+    <string name="quick_event_weather_clouds_desc">Cloudy</string>
+    <string name="quick_event_weather_rain_desc">Rain showers</string>
+    <string name="quick_event_weather_clear_desc">Clear skies</string>
+    <string name="quick_event_weather_storm_desc">Thunderstorms expected</string>
+    <string name="quick_event_weather_snow_desc">Snow showers possible</string>
+    <string name="quick_event_weather_wind_desc">Windy conditions</string>
+    <string name="quick_event_weather_mist_desc">Misty weather</string>
 
     <string name="intent_no_app_clock_found">Unable to find calendar or clock activity</string>
 
