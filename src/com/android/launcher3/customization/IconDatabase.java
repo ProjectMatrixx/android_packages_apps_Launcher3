@@ -42,6 +42,7 @@ public class IconDatabase {
     }
 
     public static String getGlobalLabelThemedIcons(Context context) {
+        if (context == null) return "Disabled";
         final String disabledLabel = context.getString(R.string.themed_icon_pack_disabled);
         final String defaultLabel = context.getString(R.string.icon_pack_default_label);
         final String pkgName = getGlobalThemeIcons(context);
