@@ -41,7 +41,6 @@ import com.android.launcher3.icons.BaseIconFactory;
 import com.android.launcher3.icons.BaseIconFactory.IconOptions;
 import com.android.launcher3.icons.BitmapInfo;
 import com.android.launcher3.icons.IconProvider;
-import com.android.launcher3.icons.MonochromeIconFactory;
 import com.android.launcher3.pm.UserCache;
 import com.android.launcher3.util.CancellableTask;
 import com.android.launcher3.util.DisplayController;
@@ -51,7 +50,6 @@ import com.android.launcher3.util.FlagOp;
 import com.android.launcher3.util.Preconditions;
 import com.android.quickstep.util.TaskKeyLruCache;
 import com.android.quickstep.util.TaskVisualsChangeListener;
-import com.android.launcher3.util.Themes;
 import com.android.systemui.shared.recents.model.Task;
 import com.android.systemui.shared.recents.model.Task.TaskKey;
 import com.android.systemui.shared.system.PackageManagerWrapper;
@@ -64,8 +62,6 @@ import java.util.function.Consumer;
  */
 public class TaskIconCache implements DisplayInfoChangeListener {
 
-    public static final int FLAG_THEMED = 1 << 0;
-
     private final Executor mBgExecutor;
 
     private final Context mContext;
@@ -76,10 +72,6 @@ public class TaskIconCache implements DisplayInfoChangeListener {
     private final IconProvider mIconProvider;
 
     private BaseIconFactory mIconFactory;
-
-    private MonochromeIconFactory mMonochromeIconFactory;
-    private boolean mThemedIconsEnabled;
-    private boolean mIsMonochromeIconsEnabled;
 
     @Nullable
     public TaskVisualsChangeListener mTaskVisualsChangeListener = null;
@@ -95,8 +87,6 @@ public class TaskIconCache implements DisplayInfoChangeListener {
         mIconCache = new TaskKeyLruCache<>(cacheSize);
 
         DisplayController.INSTANCE.get(mContext).addChangeListener(this);
-        mThemedIconsEnabled = Themes.isThemedIconEnabled(mContext);
-        mIsMonochromeIconsEnabled = Utilities.enableMonoChromeThemedIcons(context);
     }
 
     @Override
@@ -173,18 +163,17 @@ public class TaskIconCache implements DisplayInfoChangeListener {
                     new BitmapDrawable(mContext.getResources(), icon),
                     key.userId,
                     desc.getPrimaryColor(),
-                    false /* isInstantApp */).newIcon(mContext, mThemedIconsEnabled ? FLAG_THEMED : 0);
+                    false /* isInstantApp */).newIcon(mContext);
         } else {
             activityInfo = PackageManagerWrapper.getInstance().getActivityInfo(
                     key.getComponent(), key.userId);
             if (activityInfo != null) {
-                String themedIconPack = Themes.getThemedIconPack(mContext);
                 BitmapInfo bitmapInfo = getBitmapInfo(
-                        mIconProvider.getIcon(activityInfo, mThemedIconsEnabled ? themedIconPack : null),
+                        mIconProvider.getIcon(activityInfo),
                         key.userId,
                         desc.getPrimaryColor(),
                         activityInfo.applicationInfo.isInstantApp());
-                entry.icon = bitmapInfo.newIcon(mContext, mThemedIconsEnabled ? FLAG_THEMED : 0);
+                entry.icon = bitmapInfo.newIcon(mContext);
             } else {
                 entry.icon = getDefaultIcon(key.userId);
             }
@@ -241,7 +230,7 @@ public class TaskIconCache implements DisplayInfoChangeListener {
 
             int index;
             if ((index = mDefaultIcons.indexOfKey(userId)) >= 0) {
-                return mDefaultIcons.valueAt(index).newIcon(mContext, mThemedIconsEnabled ? FLAG_THEMED : 0);
+                return mDefaultIcons.valueAt(index).newIcon(mContext);
             } else {
                 try (BaseIconFactory li = getIconFactory()) {
                     BitmapInfo info = mDefaultIconBase.withFlags(
@@ -249,7 +238,7 @@ public class TaskIconCache implements DisplayInfoChangeListener {
                                     .applyBitmapInfoFlags(FlagOp.NO_OP))
                                             .withUser(UserHandle.of(userId), li);
                     mDefaultIcons.put(userId, info);
-                    return info.newIcon(mContext, mThemedIconsEnabled ? FLAG_THEMED : 0);
+                    return info.newIcon(mContext);
                 }
             }
         }
@@ -273,25 +262,11 @@ public class TaskIconCache implements DisplayInfoChangeListener {
 
     @WorkerThread
     private BaseIconFactory getIconFactory() {
-        final int mIconBitmapSize = mContext.getResources().
-            getDimensionPixelSize(R.dimen.task_icon_cache_default_icon_size);
         if (mIconFactory == null) {
             mIconFactory = new BaseIconFactory(mContext,
                     DisplayController.INSTANCE.get(mContext).getInfo().getDensityDpi(),
-                    mIconBitmapSize) {
-                @Override
-                protected Drawable getMonochromeDrawable(Drawable base) {
-                    Drawable mono = super.getMonochromeDrawable(base);
-                    if (mono != null || !mIsMonochromeIconsEnabled) {
-                        return mono;
-                    }
-                    if (mMonochromeIconFactory == null) {
-                        mMonochromeIconFactory = new MonochromeIconFactory(mIconBitmapSize);
-                    }
-                    return mMonochromeIconFactory.wrap(base);
-                }
-            };
-            mIconFactory.setMonoIconEnabled(mThemedIconsEnabled);
+                    mContext.getResources().getDimensionPixelSize(
+                            R.dimen.task_icon_cache_default_icon_size));
         }
         return mIconFactory;
     }
