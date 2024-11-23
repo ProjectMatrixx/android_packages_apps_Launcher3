@@ -1,5 +1,9 @@
 package com.android.launcher3.qsb;
 
+import static android.view.View.MeasureSpec.EXACTLY;
+import static com.android.launcher3.icons.IconNormalizer.ICON_VISIBLE_AREA_FACTOR;
+import static android.view.View.MeasureSpec.makeMeasureSpec;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -56,12 +60,9 @@ public class QsbLayout extends FrameLayout {
         clipIconRipples();
 
         boolean isThemed = Utilities.isThemedIconsEnabled(mContext);
+        boolean isMusicSearchEnabled = Utilities.isMusicSearchEnabled(mContext);
 
-        if (Utilities.isMusicSearchEnabled(mContext)) {
-            micIcon.setImageResource(isThemed ? R.drawable.ic_music_themed : R.drawable.ic_music_color);
-        } else {
-            micIcon.setImageResource(isThemed ? R.drawable.ic_mic_themed : R.drawable.ic_mic_color);
-        }
+        micIcon.setImageResource(isThemed ? (isMusicSearchEnabled ? R.drawable.ic_music_themed : R.drawable.ic_mic_themed) : (isMusicSearchEnabled ? R.drawable.ic_music_color : R.drawable.ic_mic_color));
         gIcon.setImageResource(isThemed ? R.drawable.ic_super_g_themed : R.drawable.ic_super_g_color);
         lensIcon.setImageResource(isThemed ? R.drawable.ic_lens_themed : R.drawable.ic_lens_color);
 
@@ -116,31 +117,41 @@ public class QsbLayout extends FrameLayout {
         DeviceProfile dp = ActivityContext.lookupContext(mContext).getDeviceProfile();
         int cellWidth = DeviceProfile.calculateCellWidth(requestedWidth, dp.cellLayoutBorderSpacePx.x, dp.numShownHotseatIcons);
         int iconSize = (int)(Math.round((dp.iconSizePx * 0.92f)));
-        int width = requestedWidth;
+        int widthReduction = cellWidth - iconSize;
+        int width = requestedWidth - widthReduction;
         setMeasuredDimension(width, height);
 
         for (int i = 0; i < getChildCount(); i++) {
             final View child = getChildAt(i);
             if (child != null) {
-                measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
+                measureChildWithMargins(child, widthMeasureSpec, widthReduction, heightMeasureSpec, 0);
             }
         }
     }
 
     private void setUpMainSearch() {
-        String searchPackage = QsbContainerView.getSearchWidgetPackageName(mContext);
+        Intent pixelSearchIntent = mContext.getPackageManager().getLaunchIntentForPackage("rk.android.app.pixelsearch");
         setOnClickListener(view -> {
-            mContext.startActivity(new Intent("android.search.action.GLOBAL_SEARCH").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                Intent.FLAG_ACTIVITY_CLEAR_TASK).setPackage(searchPackage));
+            if (pixelSearchIntent != null) {
+                pixelSearchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                mContext.startActivity(pixelSearchIntent);
+            } else {
+                String searchPackage = QsbContainerView.getSearchWidgetPackageName(mContext);
+                Intent searchIntent = new Intent("android.search.action.GLOBAL_SEARCH")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    .setPackage(searchPackage);
+                mContext.startActivity(searchIntent);
+            }
         });
     }
 
     private void setupGIcon() {
         try {
+            Intent pixelSearchIntent = mContext.getPackageManager().getLaunchIntentForPackage("rk.android.app.pixelsearch");
             Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(Utilities.GSA_PACKAGE);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             gIcon.setOnClickListener(view -> {
-                mContext.startActivity(intent);
+                mContext.startActivity(pixelSearchIntent != null ? pixelSearchIntent : intent);
             });
         } catch (Exception e) {
             // Do nothing
