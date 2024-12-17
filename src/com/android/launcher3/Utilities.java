@@ -24,12 +24,16 @@ import static com.android.launcher3.util.SplitConfigurationOptions.STAGE_POSITIO
 import static com.android.launcher3.util.SplitConfigurationOptions.STAGE_TYPE_MAIN;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityOptions;
 import android.app.KeyguardManager;
+import android.app.PendingIntent;
+import android.app.AlarmManager;
 import android.app.Person;
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
@@ -139,7 +143,7 @@ public final class Utilities {
     public static final boolean ATLEAST_V = Build.VERSION.SDK_INT
             >= VERSION_CODES.VANILLA_ICE_CREAM;
 
-    private static final long WAIT_BEFORE_RESTART = 100; // ms
+    private static final long WAIT_BEFORE_RESTART = 500; // ms
 
     /**
      * Set on a motion event dispatched from the nav bar. See {@link MotionEvent#setEdgeFlags(int)}.
@@ -996,10 +1000,13 @@ public final class Utilities {
         return null;
     }
 
-    public static void restart() {
-        MAIN_EXECUTOR.getHandler().postDelayed(() -> {
-            System.exit(0);
-        }, WAIT_BEFORE_RESTART);
+    public static void restart(final Context context) {
+        Intent intent = new Intent(context, com.android.launcher3.Launcher.class);
+        PendingIntent pi = PendingIntent.getActivity(context, 1234,
+                intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + WAIT_BEFORE_RESTART * 2, pi);
+        System.exit(0);
     }
 
     public static String formatDateTime(Context context) {
