@@ -25,7 +25,7 @@
     <!-- Title for an option to keep an app pinned to the screen until it is unpinned -->
     <string name="recent_task_option_pin">Pin</string>
     <!-- Title for an option to enter freeform mode for a given app -->
-    <string name="recent_task_option_freeform">Freeform</string>
+    <string name="recent_task_option_freeform">Floating</string>
     <!-- Title and content description for an option to enter desktop windowing mode for a given app -->
     <string name="recent_task_option_desktop">Desktop</string>
     <!-- Title and content description for an option to move app to external display. -->
