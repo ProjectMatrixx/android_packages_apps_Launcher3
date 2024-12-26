@@ -116,7 +116,7 @@
         <item name="android:textColorHint">#A0FFFFFF</item>
         <item name="android:colorControlHighlight">#19FFFFFF</item>
         <item name="android:colorPrimary">#FF212121</item>
-        <item name="allAppsScrimColor">@*android:color/system_neutral1_800</item>
+        <item name="allAppsScrimColor">@*android:color/system_background_dark</item>
         <item name="allAppsScrimColorOverBlur">#52000000</item>
         <item name="allappsHeaderProtectionColor">@*android:color/transparent</item>
         <item name="allAppsNavBarScrimColor">#80000000</item>
