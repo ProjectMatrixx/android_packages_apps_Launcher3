@@ -414,7 +414,10 @@
 
     <string name="intent_no_app_clock_found">Unable to find calendar or clock activity</string>
 
+<<<<<<< HEAD
     <!-- Background blur at app launch-->
     <string name="pref_blur_background_at_app_launch_title">Background blur at app launch</string>
     <string name="pref_blur_background_at_app_launch_summary">Blur the background at app launch</string>
+    
+    <string name="app_info_title">Application Info</string>
 </resources>
