@@ -179,14 +179,11 @@ public class AppsSearchContainerLayout extends ExtendedEditText
                         // Handle touch on the right drawable (lens icon)
                         // launch lens app
                         Intent lensIntent = new Intent();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("caller_package", Utilities.GSA_PACKAGE);
-                        bundle.putLong("start_activity_time_nanos", SystemClock.elapsedRealtimeNanos());
-                        lensIntent.setComponent(new ComponentName(Utilities.GSA_PACKAGE, Utilities.LENS_ACTIVITY))
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                .setPackage(Utilities.GSA_PACKAGE)
+                        lensIntent.setAction(Intent.ACTION_VIEW)
+                        	.setComponent(new ComponentName(Utilities.GSA_PACKAGE, Utilities.LENS_ACTIVITY))
+                        	.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 .setData(Uri.parse(Utilities.LENS_URI))
-                                .putExtra("lens_activity_params", bundle);
+                                .putExtra("LensHomescreenShortcut", true);
                         getContext().startActivity(lensIntent);
                         return true;
                     }
