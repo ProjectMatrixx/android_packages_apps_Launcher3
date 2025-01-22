@@ -85,7 +85,7 @@
             style="@style/OverviewActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_lens"
+            android:src="@drawable/ic_share"
             android:tint="?android:attr/colorAccent"
             android:background="@drawable/bg_overview_actions_button"
             android:theme="@style/ThemeControlHighlightWorkspaceColor"
