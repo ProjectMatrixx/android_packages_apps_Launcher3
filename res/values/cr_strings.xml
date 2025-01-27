@@ -173,7 +173,7 @@
     <!-- Recents icons -->
     <string name="recents_screenshot_title">Screenshot</string>
     <string name="recents_clear_all_title">Clear all</string>
-    <string name="recents_lens_title">Lens</string>
+    <string name="recents_lens_title">Share</string>
 
     <!-- Parallax -->
     <string name="short_parallax_title">Allow short parallax</string>
