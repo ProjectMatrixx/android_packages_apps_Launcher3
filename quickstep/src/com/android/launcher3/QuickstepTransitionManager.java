@@ -86,6 +86,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.RenderEffect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.IBinder;
@@ -283,6 +284,7 @@ public class QuickstepTransitionManager implements OnDeviceProfileChangeListener
     // Will never be larger than MAX_NUM_TASKS
     private LinkedHashMap<Integer, Pair<Integer, Integer>> mTaskStartParams;
     private boolean mAreAnimationsEnabled = true;
+    private boolean mBlurBackgroundAtAppLaunch = true;
 
     private final Interpolator mOpeningXInterpolator;
     private final Interpolator mOpeningInterpolator;
@@ -933,10 +935,13 @@ public class QuickstepTransitionManager implements OnDeviceProfileChangeListener
         // Since we added a start delay, call update here to init the FloatingIconView properly.
         listener.onUpdate(0, true /* initOnly */);
 
+        mBlurBackgroundAtAppLaunch = Utilities.blurBackgroundAtAppLaunch(mLauncher.getApplicationContext());
         // If app targets are translucent, do not animate the background as it causes a visible
         // flicker when it resets itself at the end of its animation.
         if (appTargetsAreTranslucent || !launcherClosing) {
             animatorSet.play(appAnimator);
+        } else if (mBlurBackgroundAtAppLaunch) {
+            animatorSet.playTogether(appAnimator, getBackgroundBlurAnimator());
         } else {
             animatorSet.playTogether(appAnimator, getBackgroundAnimator());
         }
@@ -1073,10 +1078,13 @@ public class QuickstepTransitionManager implements OnDeviceProfileChangeListener
             }
         });
 
+        mBlurBackgroundAtAppLaunch = Utilities.blurBackgroundAtAppLaunch(mLauncher.getApplicationContext());
         // If app targets are translucent, do not animate the background as it causes a visible
         // flicker when it resets itself at the end of its animation.
         if (appTargetsAreTranslucent || !launcherClosing) {
             animatorSet.play(appAnimator);
+        } else if (mBlurBackgroundAtAppLaunch) {
+            animatorSet.playTogether(appAnimator, getBackgroundBlurAnimator());
         } else {
             animatorSet.playTogether(appAnimator, getBackgroundAnimator());
         }
@@ -1128,6 +1136,71 @@ public class QuickstepTransitionManager implements OnDeviceProfileChangeListener
                     depthController.dispose();
                 }));
 
+        return backgroundRadiusAnim;
+    }
+
+    private ObjectAnimator getBackgroundBlurAnimator() {
+        boolean allowBlurringLauncher = mLauncher.getStateManager().getState() != OVERVIEW
+                && BlurUtils.supportsBlursOnWindows();
+        LaunchDepthController depthController = new LaunchDepthController(mLauncher);
+        ObjectAnimator backgroundRadiusAnim = ObjectAnimator.ofFloat(depthController.stateDepth,
+                        MULTI_PROPERTY_VALUE, BACKGROUND_APP.getDepth(mLauncher))
+                .setDuration(APP_LAUNCH_DURATION);
+        if (allowBlurringLauncher) {
+            View rootView = mLauncher.getDragLayer();
+            // Create a composite SurfaceControl layer for everything behind the app animation
+            ViewRootImpl viewRootImpl = rootView.getViewRootImpl();
+            SurfaceControl parentSurface = viewRootImpl != null ? viewRootImpl.getSurfaceControl() : null;
+            if (parentSurface != null) {
+                SurfaceControl blurLayer = new SurfaceControl.Builder()
+                        .setName("Blur Layer")
+                        .setParent(parentSurface)
+                        .setOpaque(false)
+                        .setEffectLayer()
+                        .build();
+                SurfaceControl.Transaction transaction = new SurfaceControl.Transaction();
+                // Create an animator for the blur effect
+                backgroundRadiusAnim.addUpdateListener(animation -> {
+                    if (mLauncher.getStateManager().getState() == LauncherState.ALL_APPS) {
+                        return;
+                    }
+                    float maxBlurRadius = Utilities.getBlurRadius(mLauncher.getApplicationContext());
+                    float animatedValue = (float) animation.getAnimatedValue();
+                    float blurRadius = Math.min(maxBlurRadius, animatedValue * maxBlurRadius); // Scale blur with animation progress
+                    // Dynamically update blur radius
+                    if (blurLayer != null && blurLayer.isValid()) {
+                        transaction.setBackgroundBlurRadius(blurLayer, (int) blurRadius);
+                        transaction.setAlpha(blurLayer, 1f);
+                        transaction.show(blurLayer);
+                        transaction.apply();
+                    }
+                });
+                backgroundRadiusAnim.setInterpolator(mOpeningInterpolator);
+                // Cleanup on animation end or cancel
+                backgroundRadiusAnim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        cleanupBlurLayer(blurLayer, transaction);
+                    }
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        cleanupBlurLayer(blurLayer, transaction);
+                    }
+                    private void cleanupBlurLayer(SurfaceControl blurLayer, SurfaceControl.Transaction transaction) {
+                        if (blurLayer != null && blurLayer.isValid()) {
+                            transaction.remove(blurLayer).apply();
+                            blurLayer.release(); // Release the SurfaceControl to avoid leaks
+                        }
+                    }
+                });
+            }
+        }
+        backgroundRadiusAnim.addListener(
+                AnimatorListeners.forEndCallback(() -> {
+                    depthController.stateDepth
+                            .setValue(mLauncher.getDepthController().stateDepth.getValue());
+                    depthController.dispose();
+                }));
         return backgroundRadiusAnim;
     }
 

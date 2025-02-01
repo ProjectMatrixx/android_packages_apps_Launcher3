@@ -33,6 +33,14 @@
         android:key="pref_trust_apps"
         android:title="@string/trust_apps_manager_name" />
 
+    <SwitchPreferenceCompat
+        android:key="pref_blur_background_at_app_launch"
+        android:title="@string/pref_blur_background_at_app_launch_title"
+        android:summary="@string/pref_blur_background_at_app_launch_summary"
+        android:defaultValue="true"
+        android:persistent="true"
+        launcher:iconSpaceReserved="false" />
+
     <androidx.preference.PreferenceScreen
         android:persistent="false"
         android:title="@string/suggestion_pref_screen_title"
