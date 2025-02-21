@@ -154,9 +154,15 @@ public class MemInfoView extends TextView {
         } else {
             bottomMargin = mDp.memInfoMarginGesturePx;
         }
-
-        lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin, bottomMargin);
-        lp.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+        
+        int leftMargin = 0;
+        if (!mDp.isTaskbarPresent && mDp.isTablet && mDp.isLandscape) {
+            lp.gravity = Gravity.START | Gravity.BOTTOM;
+            leftMargin = mDp.memInfoMarginGesturePx;
+        } else {
+            lp.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+        }
+        lp.setMargins(leftMargin, lp.topMargin, lp.rightMargin, bottomMargin);
     }
 
     private String formatTotalMemory() {
