@@ -33,13 +33,14 @@ import com.android.internal.util.crdroid.OmniJawsClient;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3.util.MediaSessionManagerHelper;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.List;
 
-public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
+public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, MediaSessionManagerHelper.MediaMetadataListener {
 
     public final ArrayList<OnDataListener> mListeners = new ArrayList();
     private static final String SETTING_WEATHER_LOCKSCREEN_UNIT = "weather_lockscreen_unit";
@@ -55,7 +56,6 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
 
     private boolean mUseImperialUnit;
 
-    private MediaController mController;
     private MediaMetadata mMediaMetadata;
     private String mLastTrackTitle = null;
 
@@ -90,20 +90,6 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
         void onDataUpdated();
     }
 
-    private final MediaController.Callback mMediaCallback = new MediaController.Callback() {
-        @Override
-        public void onPlaybackStateChanged(PlaybackState state) {
-            super.onPlaybackStateChanged(state);
-            updateMediaController();
-        }
-
-        @Override
-        public void onMetadataChanged(MediaMetadata metadata) {
-            super.onMetadataChanged(metadata);
-            updateMediaController();
-        }
-    };
-
     public QuickspaceController(Context context) {
         mContext = context;
         mHandler = new Handler();
@@ -120,6 +106,7 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
     public void addListener(OnDataListener listener) {
         mListeners.add(listener);
         addWeatherProvider();
+        getMSMHInstance().addMediaMetadataListener(this);
         listener.onDataUpdated();
     }
 
@@ -252,52 +239,12 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
         mHandler.post(mOnDataUpdatedRunnable);
     }
 
-    private MediaController getActiveLocalMediaController() {
-        MediaSessionManager mediaSessionManager =
-                mContext.getSystemService(MediaSessionManager.class);
-        MediaController localController = null;
-        final List<String> remoteMediaSessionLists = new ArrayList<>();
-        for (MediaController controller : mediaSessionManager.getActiveSessions(null)) {
-            final MediaController.PlaybackInfo pi = controller.getPlaybackInfo();
-            if (pi == null) continue;
-            final PlaybackState playbackState = controller.getPlaybackState();
-            if (playbackState == null) continue;
-            if (playbackState.getState() != PlaybackState.STATE_PLAYING) continue;
-            if (pi.getPlaybackType() == MediaController.PlaybackInfo.PLAYBACK_TYPE_REMOTE) {
-                if (localController != null
-                        && TextUtils.equals(
-                                localController.getPackageName(), controller.getPackageName())) {
-                    localController = null;
-                }
-                if (!remoteMediaSessionLists.contains(controller.getPackageName())) {
-                    remoteMediaSessionLists.add(controller.getPackageName());
-                }
-                continue;
-            }
-            if (pi.getPlaybackType() == MediaController.PlaybackInfo.PLAYBACK_TYPE_LOCAL) {
-                if (localController == null
-                        && !remoteMediaSessionLists.contains(controller.getPackageName())) {
-                    localController = controller;
-                }
-            }
-        }
-        return localController;
-    }
-
-    private void registerMediaController() {
-        MediaController localController = getActiveLocalMediaController();
-        if (localController != null && (mController == null || !sameSessions(mController, localController))) {
-            unregisterMediaController();
-            mController = localController;
-            mController.registerCallback(mMediaCallback);
-        }
-    }
-
     private void unregisterMediaController() {
-        if (mController != null) {
-            mController.unregisterCallback(mMediaCallback);
-            mController = null;
-        }
+        getMSMHInstance().removeMediaMetadataListener(this);
+    }
+    
+    private MediaSessionManagerHelper getMSMHInstance() {
+        return MediaSessionManagerHelper.Companion.getInstance(mContext);
     }
 
     private void updateMediaController() {
@@ -305,11 +252,8 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
             unregisterMediaController();
             return;
         }
-        registerMediaController();
-        if (mController != null) {
-            mMediaMetadata = mController.getMetadata();
-        }
-        boolean isPlaying = PlaybackState.STATE_PLAYING == getMediaControllerPlaybackState(mController);
+        mMediaMetadata = getMSMHInstance().getCurrentMediaMetadata();
+        boolean isPlaying = getMSMHInstance().isMediaPlaying();
         String trackArtist = isPlaying && mMediaMetadata != null ? mMediaMetadata.getString(MediaMetadata.METADATA_KEY_ARTIST) : "";
         String trackTitle = isPlaying && mMediaMetadata != null ? mMediaMetadata.getString(MediaMetadata.METADATA_KEY_TITLE) : "";
         mEventsController.setMediaInfo(trackTitle, trackArtist, isPlaying);
@@ -317,9 +261,13 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver {
         notifyListeners();
     }
     
-    private boolean sameSessions(MediaController a, MediaController b) {
-        if (a == b) return true;
-        if (a == null) return false;
-        return a.controlsSameSession(b);
+    @Override
+    public void onMediaMetadataChanged() {
+        updateMediaController();
+    }
+
+    @Override
+    public void onPlaybackStateChanged() {
+        updateMediaController();
     }
 }
