@@ -15,6 +15,8 @@
  */
 package com.android.launcher3.quickspace;
 
+import static com.android.launcher3.util.Executors.MAIN_EXECUTOR;
+
 import android.annotation.NonNull;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -24,7 +26,6 @@ import android.media.session.MediaController;
 import android.media.session.MediaSession;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -34,10 +35,9 @@ import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.util.PackageUserKey;
 import com.android.launcher3.util.MediaSessionManagerHelper;
+import com.android.launcher3.util.MSMHProxy;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
 import java.util.List;
 
 public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, MediaSessionManagerHelper.MediaMetadataListener {
@@ -48,18 +48,10 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
     private static final String TAG = "Launcher3:QuickspaceController";
 
     private final Context mContext;
-    private final Handler mHandler;
     private QuickEventsController mEventsController;
     private OmniJawsClient mWeatherClient;
     private OmniJawsClient.WeatherInfo mWeatherInfo;
     private Drawable mConditionImage;
-
-    private boolean mUseImperialUnit;
-
-    private MediaMetadata mMediaMetadata;
-    private String mLastTrackTitle = null;
-
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     private Runnable mOnDataUpdatedRunnable = new Runnable() {
             @Override
@@ -92,7 +84,6 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
 
     public QuickspaceController(Context context) {
         mContext = context;
-        mHandler = new Handler();
         mEventsController = new QuickEventsController(context);
         mWeatherClient = new OmniJawsClient(context);
     }
@@ -106,7 +97,7 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
     public void addListener(OnDataListener listener) {
         mListeners.add(listener);
         addWeatherProvider();
-        getMSMHInstance().addMediaMetadataListener(this);
+        MSMHProxy.INSTANCE(mContext).addMediaMetadataListener(this);
         listener.onDataUpdated();
     }
 
@@ -137,37 +128,26 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
         boolean shouldShowCity = Utilities.QuickSpaceShowCity(mContext);
         boolean showWeatherText = Utilities.QuickSpaceShowWeatherText(mContext);
         if (mWeatherInfo != null) {
-            String formattedCondition = mWeatherInfo.condition;
-            if (formattedCondition.toLowerCase().contains("clouds")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_clouds);
-            } else if (formattedCondition.toLowerCase().contains("rain")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_rain);
-            } else if (formattedCondition.toLowerCase().contains("clear")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_clear);
-            } else if (formattedCondition.toLowerCase().contains("storm")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_storm);
-            } else if (formattedCondition.toLowerCase().contains("snow")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_snow);
-            } else if (formattedCondition.toLowerCase().contains("wind")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_wind);
-            } else if (formattedCondition.toLowerCase().contains("mist")) {
-                formattedCondition = mContext.getResources().getString(R.string.quick_event_weather_mist);
-            }
             String weatherTemp = (shouldShowCity ? mWeatherInfo.city : "") + " " + mWeatherInfo.temp +
-                    mWeatherInfo.tempUnits  + (showWeatherText ? " · "  + formattedCondition : "");
+                    mWeatherInfo.tempUnits + 
+                    (showWeatherText ? " · " + capitalizeWords(mWeatherInfo.condition) : "");
             return weatherTemp;
         }
         return null;
     }
 
-    private int getMediaControllerPlaybackState(MediaController controller) {
-        if (controller != null) {
-            final PlaybackState playbackState = controller.getPlaybackState();
-            if (playbackState != null) {
-                return playbackState.getState();
+    private String capitalizeWords(String input) {
+        if (input == null || input.isEmpty()) return input;
+        String[] words = input.split("\\s+");
+        StringBuilder capitalized = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                capitalized.append(Character.toUpperCase(word.charAt(0)))
+                           .append(word.substring(1).toLowerCase())
+                           .append(" ");
             }
         }
-        return PlaybackState.STATE_NONE;
+        return capitalized.toString().trim();
     }
 
     public void onPause() {
@@ -175,18 +155,11 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
     }
 
     public void onResume() {
-        maybeInitExecutor();
         mEventsController.onResume();
         updateMediaController();
         notifyListeners();
     }
-
-    private void maybeInitExecutor() {
-        if (executorService == null || executorService.isShutdown()) {
-            executorService = Executors.newSingleThreadExecutor();
-        }
-    }
-
+    
     private void cancelListeners() {
         if (mEventsController != null) {
             mEventsController.onPause();
@@ -195,10 +168,6 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
             removeListener(listener);
         }
         unregisterMediaController();
-        mHandler.removeCallbacksAndMessages(null);
-        if (executorService != null && !executorService.isShutdown()) {
-            executorService.shutdownNow();
-        }
     }
 
     public void onDestroy() {
@@ -206,8 +175,6 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
         mWeatherClient = null;
         mWeatherInfo = null;
         mConditionImage = null;
-        mMediaMetadata = null;
-        executorService = null;
     }
 
     @Override
@@ -231,20 +198,17 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
     }
 
     private void queryAndUpdateWeather() {
-        maybeInitExecutor();
-        executorService.execute(mWeatherRunnable);
+        MAIN_EXECUTOR.execute(mWeatherRunnable);
     }
 
     public void notifyListeners() {
-        mHandler.post(mOnDataUpdatedRunnable);
+        MAIN_EXECUTOR
+            .getHandler()
+            .post(mOnDataUpdatedRunnable);
     }
 
     private void unregisterMediaController() {
-        getMSMHInstance().removeMediaMetadataListener(this);
-    }
-    
-    private MediaSessionManagerHelper getMSMHInstance() {
-        return MediaSessionManagerHelper.Companion.getInstance(mContext);
+        MSMHProxy.INSTANCE(mContext).removeMediaMetadataListener(this);
     }
 
     private void updateMediaController() {
@@ -252,10 +216,10 @@ public class QuickspaceController implements OmniJawsClient.OmniJawsObserver, Me
             unregisterMediaController();
             return;
         }
-        mMediaMetadata = getMSMHInstance().getCurrentMediaMetadata();
-        boolean isPlaying = getMSMHInstance().isMediaPlaying();
-        String trackArtist = isPlaying && mMediaMetadata != null ? mMediaMetadata.getString(MediaMetadata.METADATA_KEY_ARTIST) : "";
-        String trackTitle = isPlaying && mMediaMetadata != null ? mMediaMetadata.getString(MediaMetadata.METADATA_KEY_TITLE) : "";
+        MediaMetadata mediaMetadata = MSMHProxy.INSTANCE(mContext).getCurrentMediaMetadata();
+        boolean isPlaying = MSMHProxy.INSTANCE(mContext).isMediaPlaying();
+        String trackArtist = isPlaying && mediaMetadata != null ? mediaMetadata.getString(MediaMetadata.METADATA_KEY_ARTIST) : "";
+        String trackTitle = isPlaying && mediaMetadata != null ? mediaMetadata.getString(MediaMetadata.METADATA_KEY_TITLE) : "";
         mEventsController.setMediaInfo(trackTitle, trackArtist, isPlaying);
         mEventsController.updateQuickEvents();
         notifyListeners();

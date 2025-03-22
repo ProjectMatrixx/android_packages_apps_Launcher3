@@ -52,6 +52,7 @@ import java.util.Random;
 import java.util.List;
 
 import com.android.launcher3.util.MediaSessionManagerHelper;
+import com.android.launcher3.util.MSMHProxy;
 
 public class QuickEventsController {
 
@@ -162,12 +163,9 @@ public class QuickEventsController {
     }
 
     private void nowPlayingEvent() {
-        if (mEventNowPlaying) {
-            boolean infoExpired = !mPlayingActive;
-            if (infoExpired) {
-                mIsQuickEvent = false;
-                mEventNowPlaying = false;
-            }
+        if (mEventNowPlaying && !mPlayingActive) {
+            mIsQuickEvent = false;
+            mEventNowPlaying = false;
         }
     }
 
@@ -186,16 +184,11 @@ public class QuickEventsController {
         } else {
             mEventTitleSub = mNowPlayingArtist;
         }
-        mEventSubIcon = getMSMHInstance().getMediaAppIcon();
+        mEventSubIcon = MSMHProxy.INSTANCE(mContext).getMediaAppIcon();
         mIsQuickEvent = true;
         mEventNowPlaying = true;
 
-        mEventTitleSubAction = new View.OnClickListener() {
-	        @Override
-	        public void onClick(View view) {
-		        getMSMHInstance().launchMediaApp();
-	        }
-	    };
+        mEventTitleSubAction = view -> MSMHProxy.INSTANCE(mContext).launchMediaApp();
     }
 
     private void psonalityEvent() {
@@ -272,41 +265,30 @@ public class QuickEventsController {
         }
 
         mEventSubIcon = null;
+        
+        mPSAStr = getPSAStr(hourOfDay);
 
-        switch (hourOfDay) {
-            case 5: case 6: case 7: case 8: case 9:
-                mPSAStr = mResources.getStringArray(R.array.quickspace_psa_morning);
-                mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-                mIsQuickEvent = true;
-                break;
+        if (mPSAStr != null) {
+            mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
+            mIsQuickEvent = true;
+        } else {
+            mIsQuickEvent = false;
+        }
+    }
 
-            case 19: case 20: case 21:
-                mPSAStr = mResources.getStringArray(R.array.quickspace_psa_evening);
-                mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-                mIsQuickEvent = true;
-                break;
-
-            case 16: case 17: case 18:
-                mPSAStr = mResources.getStringArray(R.array.quickspace_psa_early_evening);
-                mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-                mIsQuickEvent = true;
-                break;
-
-            case 12: case 13: case 14: case 15:
-                mPSAStr = mResources.getStringArray(R.array.quickspace_psa_noon);
-                mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-                mIsQuickEvent = true;
-                break;
-
-            case 0: case 1: case 2: case 3:
-                mPSAStr = mResources.getStringArray(R.array.quickspace_psa_midnight);
-                mEventTitleSub = mPSAStr[getLuckyNumber(0, mPSAStr.length - 1)];
-                mIsQuickEvent = true;
-                break;
-
-            default:
-                mIsQuickEvent = false;
-                break;
+    private String[] getPSAStr(int hour) {
+        if (hour >= 0 && hour <= 3) {
+            return mResources.getStringArray(R.array.quickspace_psa_midnight);
+        } else if (hour >= 5 && hour <= 9) {
+            return mResources.getStringArray(R.array.quickspace_psa_morning);
+        } else if (hour >= 12 && hour <= 15) {
+            return mResources.getStringArray(R.array.quickspace_psa_noon);
+        } else if (hour >= 16 && hour <= 18) {
+            return mResources.getStringArray(R.array.quickspace_psa_early_evening);
+        } else if (hour >= 19 && hour <= 21) {
+            return mResources.getStringArray(R.array.quickspace_psa_evening);
+        } else {
+            return null;
         }
     }
 
@@ -347,8 +329,7 @@ public class QuickEventsController {
     }
 
     public int getLuckyNumber(int min, int max) {
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
+        return new Random().nextInt((max - min) + 1) + min;
     }
 
     public void setMediaInfo(String title, String artist, boolean activePlayback) {
@@ -367,9 +348,5 @@ public class QuickEventsController {
 
     public void onResume() {
         registerPSAListener();
-    }
-    
-    private MediaSessionManagerHelper getMSMHInstance() {
-        return MediaSessionManagerHelper.Companion.getInstance(mContext);
     }
 }
