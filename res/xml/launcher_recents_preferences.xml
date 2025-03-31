@@ -44,7 +44,7 @@
             android:max="100"
             android:min="0"
             settings:units="%"
-            android:defaultValue="40" />
+            android:defaultValue="100" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -71,5 +71,4 @@
             android:persistent="true"
             launcher:iconSpaceReserved="false" />
     </PreferenceCategory>
-
 </androidx.preference.PreferenceScreen>
