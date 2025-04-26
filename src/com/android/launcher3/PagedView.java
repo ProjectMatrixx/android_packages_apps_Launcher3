@@ -176,6 +176,7 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
         mIsRtl = Utilities.isRtl(getResources());
 
         mScroller = new OverScroller(context, SCROLL);
+	mScroller.setFriction(0.006f);
         mCurrentPage = 0;
         mCurrentScrollOverPage = 0;
 
