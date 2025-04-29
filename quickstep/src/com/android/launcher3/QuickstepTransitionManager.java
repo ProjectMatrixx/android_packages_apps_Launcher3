@@ -957,7 +957,7 @@ public class QuickstepTransitionManager implements OnDeviceProfileChangeListener
     }
 
     public static int getDuration(int duration) {
-        Float sAnimScale = 60.0f;
+        Float sAnimScale = 95.0f;
         float animScale2 = Math.max(0.0f, Math.min(1.0f, sAnimScale / 100.0f));
         sAnimScale = Float.valueOf(animScale2);
         return (int) (duration * sAnimScale);
