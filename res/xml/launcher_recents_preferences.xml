@@ -37,14 +37,14 @@
             android:dependency="pref_recents_meminfo"
             launcher:iconSpaceReserved="false" />
 
-        <com.android.launcher3.settings.preferences.CustomSeekBarPreference
+<!--        <com.android.launcher3.settings.preferences.CustomSeekBarPreference
             android:key="pref_recents_opacity"
             android:title="@string/background_opacity_title"
             android:persistent="true"
             android:max="100"
             android:min="0"
             settings:units="%"
-            android:defaultValue="100" />
+            android:defaultValue="100" /> -->
     </PreferenceCategory>
 
     <PreferenceCategory
