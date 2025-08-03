@@ -111,10 +111,10 @@
     <item name="swipe_up_rect_y_stiffness" type="dimen" format="float">400</item>
 
     <!-- Expressive Dismiss -->
-    <item name="expressive_dismiss_task_trans_y_damping_ratio" type="dimen" format="float">0.6</item>
+    <item name="expressive_dismiss_task_trans_y_damping_ratio" type="dimen" format="float">0.35</item>
     <item name="expressive_dismiss_task_trans_y_stiffness" type="dimen" format="float">900</item>
-    <item name="expressive_dismiss_task_trans_x_damping_ratio" type="dimen" format="float">0.8</item>
-    <item name="expressive_dismiss_task_trans_x_stiffness" type="dimen" format="float">900</item>
+    <item name="expressive_dismiss_task_trans_x_damping_ratio" type="dimen" format="float">0.75</item>
+    <item name="expressive_dismiss_task_trans_x_stiffness" type="dimen" format="float">2000</item>
 
     <!-- Taskbar -->
     <!-- This is a float because it is converted to dp later in DeviceProfile -->
