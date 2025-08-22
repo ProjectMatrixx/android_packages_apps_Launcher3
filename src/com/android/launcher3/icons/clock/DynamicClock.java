@@ -80,24 +80,44 @@ public class DynamicClock extends BroadcastReceiver {
         ClockLayers layers = new ClockLayers();
         try {
             PackageManager packageManager = context.getPackageManager();
-            ApplicationInfo applicationInfo = packageManager.getApplicationInfo("com.google.android.deskclock", PackageManager.GET_META_DATA | PackageManager.GET_UNINSTALLED_PACKAGES);
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(
+                    "com.google.android.deskclock",
+                    PackageManager.GET_META_DATA | PackageManager.GET_UNINSTALLED_PACKAGES
+            );
             Bundle metaData = applicationInfo.metaData;
             if (metaData != null) {
-                int levelPerTickIcon = metaData.getInt("com.google.android.apps.nexuslauncher.LEVEL_PER_TICK_ICON_ROUND", 0);
+                int levelPerTickIcon = metaData.getInt(
+                        "com.google.android.apps.nexuslauncher.LEVEL_PER_TICK_ICON_ROUND", 0);
+
                 if (levelPerTickIcon != 0) {
-                    Drawable drawableForDensity = packageManager.getResourcesForApplication(applicationInfo).getDrawableForDensity(levelPerTickIcon, iconDpi);
+                    Drawable drawableForDensity =
+                            packageManager.getResourcesForApplication(applicationInfo)
+                                    .getDrawableForDensity(levelPerTickIcon, iconDpi);
                     layers.setDrawable(drawableForDensity.mutate());
-                    layers.mHourIndex = metaData.getInt("com.google.android.apps.nexuslauncher.HOUR_LAYER_INDEX", -1);
-                    layers.mMinuteIndex = metaData.getInt("com.google.android.apps.nexuslauncher.MINUTE_LAYER_INDEX", -1);
-                    layers.mSecondIndex = metaData.getInt("com.google.android.apps.nexuslauncher.SECOND_LAYER_INDEX", -1);
-                    layers.mDefaultHour = metaData.getInt("com.google.android.apps.nexuslauncher.DEFAULT_HOUR", 0);
-                    layers.mDefaultMinute = metaData.getInt("com.google.android.apps.nexuslauncher.DEFAULT_MINUTE", 0);
-                    layers.mDefaultSecond = metaData.getInt("com.google.android.apps.nexuslauncher.DEFAULT_SECOND", 0);
+
+                    // Use safe fallbacks if NexusLauncher metadata is missing
+                    layers.mHourIndex = metaData.getInt(
+                            "com.google.android.apps.nexuslauncher.HOUR_LAYER_INDEX", 0);
+                    layers.mMinuteIndex = metaData.getInt(
+                            "com.google.android.apps.nexuslauncher.MINUTE_LAYER_INDEX", 1);
+                    layers.mSecondIndex = metaData.getInt(
+                            "com.google.android.apps.nexuslauncher.SECOND_LAYER_INDEX", -1);
+
+                    layers.mDefaultHour = metaData.getInt(
+                            "com.google.android.apps.nexuslauncher.DEFAULT_HOUR", 0);
+                    layers.mDefaultMinute = metaData.getInt(
+                            "com.google.android.apps.nexuslauncher.DEFAULT_MINUTE", 0);
+                    layers.mDefaultSecond = metaData.getInt(
+                            "com.google.android.apps.nexuslauncher.DEFAULT_SECOND", 0);
+
                     if (normalizeIcon) {
                         LauncherIcons obtain = LauncherIcons.obtain(context);
                         layers.bitmap = obtain.createBadgedIconBitmap(
-                                new AdaptiveIconDrawable(layers.mDrawable.getBackground().getConstantState().newDrawable(), null)).icon;
-                        int iconBitmapSize = LauncherAppState.getInstance(context).getInvariantDeviceProfile().iconBitmapSize;
+                                new AdaptiveIconDrawable(
+                                        layers.mDrawable.getBackground().getConstantState().newDrawable(),
+                                        null)).icon;
+                        int iconBitmapSize = LauncherAppState.getInstance(context)
+                                .getInvariantDeviceProfile().iconBitmapSize;
                         layers.offset = (int) Math.ceil((double) (0.010416667f * ((float) iconBitmapSize)));
                         obtain.recycle();
                     }
@@ -114,6 +134,7 @@ public class DynamicClock extends BroadcastReceiver {
                     if (layers.mSecondIndex < 0 || layers.mSecondIndex >= numberOfLayers) {
                         layers.mSecondIndex = -1;
                     } else {
+                        // Remove second hand layer if invalid
                         layerDrawable.setDrawable(layers.mSecondIndex, null);
                         layers.mSecondIndex = -1;
                     }
