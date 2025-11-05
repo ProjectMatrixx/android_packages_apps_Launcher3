@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class FileLog {
 
-    protected static final boolean ENABLED = true;
+    protected static final boolean ENABLED = false;
     private static final String FILE_NAME_PREFIX = "log-";
     private static final DateFormat DATE_FORMAT =
             DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
