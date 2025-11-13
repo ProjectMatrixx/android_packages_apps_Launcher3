@@ -360,12 +360,12 @@ public class FloatingIconView extends FrameLayout implements
      */
     @UiThread
     private void setIcon(@Nullable Drawable drawable, @Nullable Drawable badge,
-            @Nullable Supplier<Drawable> btvIcon, int iconOffset, boolean themed) {
+            @Nullable Supplier<Drawable> btvIcon, int iconOffset) {
         final DeviceProfile dp = mLauncher.getDeviceProfile();
         final InsettableFrameLayout.LayoutParams lp =
                 (InsettableFrameLayout.LayoutParams) getLayoutParams();
         mBadge = badge;
-        mClipIconView.setIcon(drawable, iconOffset, lp, mIsOpening, dp, themed);
+        mClipIconView.setIcon(drawable, iconOffset, lp, mIsOpening, dp);
         if (drawable instanceof AdaptiveIconDrawable) {
             final int originalHeight = lp.height;
             final int originalWidth = lp.width;
@@ -431,7 +431,7 @@ public class FloatingIconView extends FrameLayout implements
         synchronized (mIconLoadResult) {
             if (mIconLoadResult.isIconLoaded) {
                 setIcon(mIconLoadResult.drawable, mIconLoadResult.badge,
-                        mIconLoadResult.btvDrawable, mIconLoadResult.iconOffset, mIconLoadResult.isThemed);
+                        mIconLoadResult.btvDrawable, mIconLoadResult.iconOffset);
                 setVisibility(VISIBLE);
                 updateViewsVisibility(false  /* isVisible */);
             } else {
@@ -441,7 +441,7 @@ public class FloatingIconView extends FrameLayout implements
                     }
 
                     setIcon(mIconLoadResult.drawable, mIconLoadResult.badge,
-                            mIconLoadResult.btvDrawable, mIconLoadResult.iconOffset, mIconLoadResult.isThemed);
+                            mIconLoadResult.btvDrawable, mIconLoadResult.iconOffset);
 
                     setVisibility(VISIBLE);
                     updateViewsVisibility(false  /* isVisible */);

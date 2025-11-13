@@ -36,7 +36,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
@@ -233,12 +232,10 @@ public class ClipIconView extends View implements ClipPathView {
      * Sets the icon for this view as part of initial setup
      */
     public void setIcon(@Nullable Drawable drawable, int iconOffset, MarginLayoutParams lp,
-            boolean isOpening, DeviceProfile dp, boolean themed) {
+            boolean isOpening, DeviceProfile dp) {
         mIsAdaptiveIcon = drawable instanceof AdaptiveIconDrawable;
         if (mIsAdaptiveIcon) {
             boolean isFolderIcon = drawable instanceof FolderAdaptiveIcon;
-            float inset = AdaptiveIconDrawable.getExtraInsetFraction() /
-                    (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction());
 
             AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) drawable;
             Drawable background = adaptiveIcon.getBackground();
@@ -249,9 +246,6 @@ public class ClipIconView extends View implements ClipPathView {
             Drawable foreground = adaptiveIcon.getForeground();
             if (foreground == null) {
                 foreground = new ColorDrawable(Color.TRANSPARENT);
-            }
-            if (themed) {
-                foreground = new InsetDrawable(foreground, inset);
             }
             mForeground = foreground;
 
