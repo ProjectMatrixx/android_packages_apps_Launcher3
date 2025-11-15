@@ -25,10 +25,10 @@ import static com.android.launcher3.util.NavigationMode.THREE_BUTTONS;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Debug;
 import android.os.Handler;
 import android.graphics.Rect;
+import android.os.HandlerThread;
 import android.text.format.Formatter;
 import android.util.AttributeSet;
 import android.util.FloatProperty;
@@ -43,8 +43,6 @@ import com.android.internal.util.MemInfoReader;
 import com.android.launcher3.DeviceProfile;
 import com.android.launcher3.LauncherPrefs;
 import com.android.launcher3.R;
-import com.android.launcher3.Insettable;
-import com.android.launcher3.util.DisplayController;
 import com.android.launcher3.util.MultiValueAlpha;
 import com.android.launcher3.util.NavigationMode;
 
@@ -57,7 +55,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
 
-public class MemInfoView extends TextView implements Insettable {
+public class MemInfoView extends TextView {
 
     private static final int UNIT_CONVERT_THRESHOLD = 1024; /* MiB */
     private static final BigDecimal GB2MB = new BigDecimal(1024);
@@ -79,8 +77,6 @@ public class MemInfoView extends TextView implements Insettable {
                     view.setAlpha(ALPHA_STATE_CTRL, v);
                 }
             };
-
-    private final Rect mInsets = new Rect();
 
     private DeviceProfile mDp;
     private MultiValueAlpha mAlpha;
@@ -128,23 +124,6 @@ public class MemInfoView extends TextView implements Insettable {
         }
     }
 
-    @Override
-    protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        updateVerticalMargin(DisplayController.getNavigationMode(getContext()));
-    }
-
-    @Override
-    public void setInsets(Rect insets) {
-        mInsets.set(insets);
-        updateVerticalMargin(DisplayController.getNavigationMode(getContext()));
-        updatePadding();
-    }
-
-    private void updatePadding() {
-        setPadding(mInsets.left, 0, mInsets.right, 0);
-    }
-
     public void setDp(DeviceProfile dp) {
         mDp = dp;
     }
@@ -161,11 +140,9 @@ public class MemInfoView extends TextView implements Insettable {
         LayoutParams lp = (LayoutParams) getLayoutParams();
         int bottomMargin;
 
-        if (!mDp.isTaskbarPresent && (mode == THREE_BUTTONS || mode == TWO_BUTTONS)) {
+        if (!mDp.isTaskbarPresent && ((mode == THREE_BUTTONS) || (mode == TWO_BUTTONS))) {
             bottomMargin = mDp.memInfoMarginThreeButtonPx;
-        } else if (mDp.isTaskbarPresent && (mode == THREE_BUTTONS || mode == TWO_BUTTONS)) {
-            bottomMargin = mDp.memInfoMarginTaskbarPx;
-        } else if (mDp.isTaskbarPresent && !(mode == THREE_BUTTONS || mode == TWO_BUTTONS)) {
+        } else if (mDp.isTaskbarPresent && !((mode == THREE_BUTTONS) || (mode == TWO_BUTTONS))) {
             bottomMargin = mDp.memInfoMarginTransientTaskbarPx;
         } else {
             bottomMargin = mDp.memInfoMarginGesturePx;
